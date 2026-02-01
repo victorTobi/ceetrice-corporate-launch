@@ -9,7 +9,6 @@ const navigation = {
   ],
   company: [
     { name: "About Us", href: "/about" },
-    { name: "Our Team", href: "/team" },
     { name: "HSE Policy", href: "/hse" },
     { name: "Contact", href: "/contact" },
   ],
