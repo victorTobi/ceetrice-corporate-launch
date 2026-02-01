@@ -79,49 +79,47 @@ export const Header = () => {
             onClick={() => setMobileMenuOpen(false)} 
             aria-hidden="true"
           />
-          <div className="fixed inset-y-0 right-0 z-[1101] w-full max-w-sm overflow-y-auto bg-primary px-6 py-6 shadow-xl">
+          <div className="fixed inset-y-0 right-0 z-[1101] w-full max-w-sm bg-primary px-5 py-4 shadow-xl flex flex-col">
             <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                 <img 
                   src="/logo.png" 
                   alt="Ceetrice" 
-                  className="h-10 w-auto"
+                  className="h-8 w-auto"
                 />
-                <span className="font-display text-xl font-bold text-primary-foreground">
+                <span className="font-display text-lg font-bold text-primary-foreground">
                   Ceetrice
                 </span>
               </Link>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
+                className="-m-2 rounded-md p-2 text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
                 <X className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-8 flow-root">
-              <div className="space-y-1">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                      location.pathname === item.href
-                        ? "text-accent bg-accent/10"
-                        : "text-primary-foreground hover:bg-primary-foreground/10"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-8 pt-6 border-t border-primary-foreground/10">
-                <Button asChild variant="accent" className="w-full">
-                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Get in Touch</Link>
-                </Button>
-              </div>
+            <nav className="mt-6 flex-1">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block rounded-md px-3 py-2.5 text-base font-medium transition-colors ${
+                    location.pathname === item.href
+                      ? "text-accent bg-accent/10"
+                      : "text-primary-foreground hover:bg-primary-foreground/10"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+            <div className="pt-4 border-t border-primary-foreground/10">
+              <Button asChild variant="accent" className="w-full">
+                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Get in Touch</Link>
+              </Button>
             </div>
           </div>
         </div>
