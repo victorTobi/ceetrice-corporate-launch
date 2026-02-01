@@ -17,7 +17,7 @@ export const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-primary-foreground/10">
+    <header className="fixed top-0 left-0 right-0 z-[1000] bg-primary/95 backdrop-blur-sm border-b border-primary-foreground/10">
       <nav className="container flex items-center justify-between py-4" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
@@ -73,13 +73,13 @@ export const Header = () => {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[100]">
+        <div className="lg:hidden fixed inset-0 z-[1100]">
           <div 
             className="fixed inset-0 bg-black/60 backdrop-blur-sm" 
             onClick={() => setMobileMenuOpen(false)} 
             aria-hidden="true"
           />
-          <div className="fixed inset-y-0 right-0 z-[101] w-full max-w-sm overflow-y-auto bg-primary px-6 py-6 shadow-xl">
+          <div className="fixed inset-y-0 right-0 z-[1101] w-full max-w-sm overflow-y-auto bg-primary px-6 py-6 shadow-xl">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
                 <img 
