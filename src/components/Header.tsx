@@ -69,7 +69,8 @@ export const Header = () => {
           </Button>
         </div>
       </nav>
-      
+      </header>
+    
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-[1100]">
@@ -123,6 +124,6 @@ export const Header = () => {
           </div>
         </div>
       )}
-    </header>
+    
   );
 };
