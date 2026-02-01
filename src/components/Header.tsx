@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
@@ -21,7 +21,17 @@ export const Header = () => {
       <nav className="container flex items-center justify-between py-4" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
-            <div className="h-10 w-10 rounded bg-accent flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Ceetrice Corporate Limited" 
+              className="h-10 w-auto"
+              onError={(e) => {
+                // Fallback to text logo if image doesn't exist
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="h-10 w-10 rounded bg-accent flex items-center justify-center hidden">
               <span className="font-display font-bold text-lg text-accent-foreground">C</span>
             </div>
             <div className="hidden sm:block">
@@ -71,16 +81,25 @@ export const Header = () => {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
+        <div className="lg:hidden fixed inset-0 z-[100]">
           <div 
             className="fixed inset-0 bg-black/60 backdrop-blur-sm" 
             onClick={() => setMobileMenuOpen(false)} 
             aria-hidden="true"
           />
-          <div className="fixed inset-y-0 right-0 z-50 w-full max-w-sm overflow-y-auto bg-primary px-6 py-6 shadow-xl">
+          <div className="fixed inset-y-0 right-0 z-[101] w-full max-w-sm overflow-y-auto bg-primary px-6 py-6 shadow-xl">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-                <div className="h-10 w-10 rounded bg-accent flex items-center justify-center">
+                <img 
+                  src="/logo.png" 
+                  alt="Ceetrice" 
+                  className="h-10 w-auto"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <div className="h-10 w-10 rounded bg-accent flex items-center justify-center hidden">
                   <span className="font-display font-bold text-lg text-accent-foreground">C</span>
                 </div>
                 <span className="font-display text-xl font-bold text-primary-foreground">
@@ -96,29 +115,27 @@ export const Header = () => {
                 <X className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-primary-foreground/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`-mx-3 block rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                        location.pathname === item.href
-                          ? "text-accent bg-accent/10"
-                          : "text-primary-foreground hover:bg-primary-foreground/10"
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Button asChild variant="accent" className="w-full">
-                    <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Get in Touch</Link>
-                  </Button>
-                </div>
+            <div className="mt-8 flow-root">
+              <div className="space-y-1">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
+                      location.pathname === item.href
+                        ? "text-accent bg-accent/10"
+                        : "text-primary-foreground hover:bg-primary-foreground/10"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-primary-foreground/10">
+                <Button asChild variant="accent" className="w-full">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Get in Touch</Link>
+                </Button>
               </div>
             </div>
           </div>
