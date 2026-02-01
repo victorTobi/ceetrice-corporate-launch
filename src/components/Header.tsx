@@ -78,7 +78,7 @@ export const Header = () => {
             onClick={() => setMobileMenuOpen(false)} 
             aria-hidden="true"
           />
-          <div className="fixed inset-y-0 right-0 z-[1101] w-full max-w-sm bg-primary px-5 py-4 shadow-xl flex flex-col">
+          <div className="fixed inset-y-0 right-0 z-[1101] w-full max-w-sm bg-[#0A1F44] px-5 py-4 shadow-xl flex flex-col">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                 <img 
