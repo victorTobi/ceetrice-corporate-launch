@@ -25,15 +25,7 @@ export const Header = () => {
               src="/logo.png" 
               alt="Ceetrice Corporate Limited" 
               className="h-10 w-auto"
-              onError={(e) => {
-                // Fallback to text logo if image doesn't exist
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
             />
-            <div className="h-10 w-10 rounded bg-accent flex items-center justify-center hidden">
-              <span className="font-display font-bold text-lg text-accent-foreground">C</span>
-            </div>
             <div className="hidden sm:block">
               <span className="font-display text-xl font-bold text-primary-foreground">
                 Ceetrice
@@ -94,14 +86,7 @@ export const Header = () => {
                   src="/logo.png" 
                   alt="Ceetrice" 
                   className="h-10 w-auto"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                  }}
                 />
-                <div className="h-10 w-10 rounded bg-accent flex items-center justify-center hidden">
-                  <span className="font-display font-bold text-lg text-accent-foreground">C</span>
-                </div>
                 <span className="font-display text-xl font-bold text-primary-foreground">
                   Ceetrice
                 </span>
