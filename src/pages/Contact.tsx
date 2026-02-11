@@ -25,7 +25,6 @@ const serviceOptions = [
 
 const Contact = () => {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -35,27 +34,21 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const recipient = "info@ceetrice.com";
+    const subject = encodeURIComponent(`Inquiry: ${formData.service || "General"} – ${formData.company}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone || "N/A"}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
+    );
+    
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     
     toast({
-      title: "Message Sent",
-      description: "Thank you for your inquiry. We'll respond within 24-48 business hours.",
+      title: "Opening Email Client",
+      description: "Your email client should open with the message pre-filled. Send it to complete your inquiry.",
     });
-    
-    setFormData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
-    setIsSubmitting(false);
   };
 
   return (
@@ -246,9 +239,8 @@ const Contact = () => {
                     variant="accent" 
                     size="lg" 
                     className="w-full md:w-auto"
-                    disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    Send Message
                   </Button>
                 </form>
               </div>
